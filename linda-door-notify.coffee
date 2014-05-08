@@ -7,11 +7,22 @@ LindaClient = require('linda-socket.io').Client
 socket = require('socket.io-client').connect(config.url)
 linda = new LindaClient().connect(socket)
 
-ts = linda.tuplespace("delta")
+tss = []
+for name, yomi of config.spaces
+  tss.push linda.tuplespace(name)
+
+notify = (msg) ->
+  for ts in tss
+    ts.write {type: "say", value: msg}
+    ts.write {type: "skype", cmd: "post", value: msg}
 
 linda.io.on 'connect', ->
-  console.log "connect!!"
+  console.log "socket.io connect!!"
 
-  ts.watch {type: "door", cmd: "open", response: "success"}, (err, tuple) ->
-    console.log tuple
-    linda.tuplespace("masuilab").write ({type: "skype", cmd: "post", value: "deltaでドアが開きました"})
+  for ts in tss
+    do (ts) ->
+      ts.watch {type: "door", cmd: "open", response: "success"}, (err, tuple) ->
+        return if err
+        console.log "#{ts.name}  - #{JSON.stringify tuple}"
+        console.log msg = "#{config.spaces[ts.name]}でドアが開きました"
+        notify msg
