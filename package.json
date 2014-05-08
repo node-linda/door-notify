@@ -1,11 +1,11 @@
 {
-  "name": "linda-skype-notify",
+  "name": "linda-door-notify",
   "private": true,
   "version": "0.0.0",
   "description": "notify when door opened",
   "main": "linda-light-notify.coffee",
   "scripts": {
-    "start": "./node_modules/coffee-script/bin/coffee linda-skype-notify.coffee"
+    "start": "./node_modules/coffee-script/bin/coffee linda-door-notify.coffee"
   },
   "author": "Sho Hashimoto <hashimoto@shokai.org>",
   "license": "MIT",
