@@ -24,5 +24,9 @@ linda.io.on 'connect', ->
       ts.watch {type: "door", cmd: "open", response: "success"}, (err, tuple) ->
         return if err
         console.log "#{ts.name}  - #{JSON.stringify tuple}"
-        console.log msg = "#{config.spaces[ts.name]}でドアが開きました"
+        if tuple.data.who?
+          msg = "#{config.spaces[ts.name]}で#{tuple.data.who}がドアを開けました"
+        else
+          msg = "#{config.spaces[ts.name]}でドアが開きました"
+        console.log msg
         notify msg
