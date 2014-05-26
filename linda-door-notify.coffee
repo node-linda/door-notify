@@ -25,7 +25,7 @@ linda.io.on 'connect', ->
         return if err
         console.log "#{ts.name}  - #{JSON.stringify tuple}"
         if tuple.data.who?
-          msg = "#{config.spaces[ts.name]}で、#{tuple.data.who}がドアを開けました"
+          msg = "#{config.spaces[ts.name]}で、#{tuple.data.who}がドアを開きました"
         else
           msg = "#{config.spaces[ts.name]}でドアが開きました"
         console.log msg
