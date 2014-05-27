@@ -1,10 +1,18 @@
 Linda Door Notify
 =================
-notify [door-open](https://github.com/node-linda/node-linda-door-open-delta) value to [skype](https://github.com/node-linda/ruby-linda-skype) and [mac-say](https://github.com/node-linda/node-linda-mac-say)
+notify [door-open](https://github.com/node-linda/node-linda-door-open-delta) value
+
+to
+
+- [slack chat](https://github.com/node-linda/slack-chat)
+- [skype chat](https://github.com/node-linda/skype-chat)
+- [mac-say](https://github.com/node-linda/mac-say)
+
 
 
 - watch {"type": "door", "cmd": "open", "result": "success"}
   - write {"type": "skype", "cmd": "post", "value": "#{space}でドアが開きました"}
+  - write {"type": "slack", "cmd": "post", "value": "#{space}でドアが開きました"}
 
 - https://github.com/node-linda/door-notify
 

@@ -15,6 +15,7 @@ notify = (msg) ->
   for ts in tss
     ts.write {type: "say", value: msg}
     ts.write {type: "skype", cmd: "post", value: msg}
+    ts.write {type: "slack", cmd: "post", value: msg}
 
 linda.io.on 'connect', ->
   console.log "socket.io connect!!"
