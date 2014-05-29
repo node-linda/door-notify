@@ -31,3 +31,13 @@ linda.io.on 'connect', ->
           msg = "#{config.spaces[ts.name]}でドアが開きました"
         console.log msg
         notify msg
+
+      ts.watch {type: "door", cmd: "close", response: "success"}, (err, tuple) ->
+        return if err
+        console.log "#{ts.name}  - #{JSON.stringify tuple}"
+        if tuple.data.who?
+          msg = "#{config.spaces[ts.name]}で、#{tuple.data.who}がドアを閉じました"
+        else
+          msg = "#{config.spaces[ts.name]}でドアが閉じました"
+        console.log msg
+        notify msg
